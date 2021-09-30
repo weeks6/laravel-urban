@@ -1,0 +1,38 @@
+.content {
+    margin: 0 auto;
+    display: grid;
+    min-height: calc(100vh - 72px);
+
+    &__wrapper {
+        margin: 0 $mobile-margin;
+    }
+}
+
+.i-container {
+    width: 100%;
+}
+
+.i-form {
+    margin: 0 auto;
+    width: clamp(300px, 468px, 100%);
+}
+
+.i-label {
+    width: 100%;
+}
+
+@include breakpoint($tablet) {
+    .content {
+        &__wrapper {
+            margin: 0 $tablet-margin;
+        }
+    }
+}
+
+@include breakpoint($tablet) {
+    .content {
+        &__wrapper {
+            margin: 0 $dekstop-margin;
+        }
+    }
+}

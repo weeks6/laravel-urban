@@ -1,0 +1,35 @@
+.content {
+  margin: 0 auto;
+  display: grid;
+  min-height: calc(100vh - 72px);
+}
+
+.content__wrapper {
+  margin: 0 10px;
+}
+
+.i-container {
+  width: 100%;
+}
+
+.i-form {
+  margin: 0 auto;
+  width: clamp(300px, 468px, 100%);
+}
+
+.i-label {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .content__wrapper {
+    margin: 0 30px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .content__wrapper {
+    margin: 0 60px;
+  }
+}
+

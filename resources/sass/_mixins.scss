@@ -1,0 +1,9 @@
+@mixin transition() {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  @mixin breakpoint($mw) {
+    @media screen and (min-width: $mw) {
+      @content;
+    }
+  }
