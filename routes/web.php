@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,15 +18,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
     return view('home');
-});
+})->name('home');
 
 Route::get('/register', function () {
     return view('register');
-});
+})->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
+
 
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
+Route::post('/login', [LoginController::class, 'index']);
+
+Route::post('/logout', [LogoutController::class, 'index'])->name('logout');
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
