@@ -1,4 +1,6 @@
 @extends('layout.app')
+@section('title', 'Городские проекты - Войти в аккаунт')
+
 @section('content')
     <div class="content__wrapper">
         <h1>Вход</h1>
