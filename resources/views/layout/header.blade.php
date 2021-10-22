@@ -25,6 +25,9 @@
 
 
                 @auth
+                    @can('view-admin-panel', User::class)
+                        <li class="{{ request()->is('admin') ? 'active' : '' }}"><a href="/admin">Панель управления</a></li>
+                    @endcan
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">
@@ -49,4 +52,3 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-Ы

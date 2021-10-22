@@ -12,12 +12,12 @@ class RegisterController extends Controller
 {
        public function store(Request $request)
        {
-            $this->validate($request, [
-                'fio' => ['required'],
-                'email' => ['required','email', 'unique:users'],
-                'password' => ['required', 'confirmed'],
-                'login' => ['required']
-            ]);
+            // $this->validate($request, [
+            //     'fio' => ['required'],
+            //     'email' => ['required','email', 'unique:users'],
+            //     'password' => ['required', 'confirmed'],
+            //     'login' => ['required']
+            // ]);
 
             User::create([
                 'fio' => $request->fio,
@@ -26,7 +26,7 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password)
             ]);
 
-            Auth::attempt($request->only('email', 'password'));
+            // Auth::attempt($request->only('email', 'password'));
 
             return redirect()->route('home');
 
