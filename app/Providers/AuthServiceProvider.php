@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
-const ADMIN_ROLE_ID = 3;
+const ADMIN_ROLE_ID = 2;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -30,6 +30,10 @@ class AuthServiceProvider extends ServiceProvider
         // Страница админ панели
 
         Gate::define('view-admin-panel', function($user) {
+            return $user->role_id === ADMIN_ROLE_ID;
+        });
+
+        Gate::define('create-posts', function($user) {
             return $user->role_id === ADMIN_ROLE_ID;
         });
 

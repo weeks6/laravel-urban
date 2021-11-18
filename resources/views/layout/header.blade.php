@@ -22,7 +22,9 @@
     
                     @auth
                         @can('view-admin-panel', User::class)
-                            <li class="{{ request()->is('admin') ? 'active' : '' }}"><a href="/admin">Панель управления</a></li>
+                            <li class="nav-item">
+                                <a href="/admin" class="nav-link {{ request()->is('admin') ? 'active' : '' }}">Панель управления</a>
+                            </li>
                         @endcan
                         <li class="nav-item dropdown">
                             <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

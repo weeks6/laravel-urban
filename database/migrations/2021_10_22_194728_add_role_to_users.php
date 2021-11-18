@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,8 +16,16 @@ class AddRoleToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->foreignId('role_id');
+            $table->foreignId('role_id')->constrained('users');
         });
+
+        Role::create([
+            'name' => 'default'
+        ]);
+
+        Role::create([
+            'name' => 'admin'
+        ]);
     }
 
     /**
