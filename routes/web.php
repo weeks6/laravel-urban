@@ -25,13 +25,18 @@ Route::get('/', function (Request $request) {
 Route::get('/register', function () {
     return view('register');
 })->name('register');
+
 Route::post('/register', [RegisterController::class, 'store']);
 
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
-Route::post('/login', [LoginController::class, 'index']);
+Route::middleware('guest')->namespace('\App\Http\Controllers')->group(function() {
+   
+    Route::get('/login', function () {
+        return view('login');
+    })->name('login');
+
+    Route::post('/login', [LoginController::class, 'index']);
+});
 
 Route::post('/logout', [LogoutController::class, 'index'])->name('logout');
 

@@ -1,54 +1,49 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+        <a class="navbar-brand" href="/">Городской портал</a>
+        <div class="navbar-nav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="/">Городской портал</a>
+            
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Главная</a>
+                    </li>
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('register') ? 'active' : '' }}" href="/register">Зарегистрироваться</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('login') ? 'active' : '' }}" href="/login">Войти</a>
+                        </li>
+                    @endguest
+    
+                    @auth
+                        @can('view-admin-panel', User::class)
+                            <li class="{{ request()->is('admin') ? 'active' : '' }}"><a href="/admin">Панель управления</a></li>
+                        @endcan
+                        <li class="nav-item dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ auth()->user()->fio }}    
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="list.html">Мои заявки</a></li>
+                                <li><a class="dropdown-item" href="new.html">Новая заявка</a></li>
+                                <li class="dropdown-item">
+                                    <form action="{{ route('logout') }}" method="POST" class="logout-form">
+                                        @csrf
+                                        <button type="submit">
+                                            Выход
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endauth
+                </ul>
+            </div>
         </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-
-                <li class="{{ request()->is('/') ? 'active' : '' }}"><a href="/">Главная</a></li>
-
-                @guest
-                    <li class="{{ request()->is('register') ? 'active' : '' }}"><a href="/register">Зарегистрироваться</a>
-                    </li>
-                    <li class="{{ request()->is('login') ? 'active' : '' }}"><a href="/login">Войти</a></li>
-                @endguest
-
-
-                @auth
-                    @can('view-admin-panel', User::class)
-                        <li class="{{ request()->is('admin') ? 'active' : '' }}"><a href="/admin">Панель управления</a></li>
-                    @endcan
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">
-                            {{ auth()->user()->fio }}
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="list.html">Мои заявки</a></li>
-                            <li><a href="new.html">Новая заявка</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST" class="logout-form">
-                                    @csrf
-                                    <button type="submit">
-                                        Выход
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                @endauth
-            </ul>
-        </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>

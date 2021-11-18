@@ -12,23 +12,23 @@ class RegisterController extends Controller
 {
        public function store(Request $request)
        {
-            // $this->validate($request, [
-            //     'fio' => ['required'],
-            //     'email' => ['required','email', 'unique:users'],
-            //     'password' => ['required', 'confirmed'],
-            //     'login' => ['required']
-            // ]);
+            $this->validate($request, [
+                'fio' => ['required'],
+                'email' => ['required','email', 'unique:users'],
+                'password' => ['required', 'confirmed'],
+                'login' => ['required']
+            ]);
 
-            User::create([
+            $user = User::create([
                 'fio' => $request->fio,
                 'email' => $request->email,
                 'login' => $request->login,
                 'password' => Hash::make($request->password)
             ]);
 
-            // Auth::attempt($request->only('email', 'password'));
+            Auth::login($user);
 
-            return redirect()->route('home');
+            return redirect()->route('home')->with('success', 'Вы успешно зарегистрировались.');
 
        }
 }

@@ -69,7 +69,7 @@
                     Согласие на обработку персональных данных
                 </label>
             </div>
-            <button type="submit" class="btn btn-default">Зарегистрироваться</button>
+            <button type="submit" class="btn btn-primary mt-1">Зарегистрироваться</button>
         </form>
     </div>
 @endsection

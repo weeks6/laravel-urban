@@ -32,7 +32,13 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-default">Войти</button>
+            <button type="submit" class="btn btn-primary mt-1">Войти</button>
+    
+            @if (session('danger'))
+                <div class="alert alert-danger mt-1">
+                    {{ session('danger') }}
+                </div>
+            @endif
         </form>
     </div>
 @endsection

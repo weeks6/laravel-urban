@@ -12,12 +12,16 @@ class LoginController extends Controller
     public function index(Request $request)
     {
         $this->validate($request, [
-            'email' => ['required','email'],
+            'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        Auth::attempt($request->only('email', 'password'));
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return redirect()->route('login')->with('danger', 'Неправильный логин или пароль');
+        } else {
+            return redirect()->route('home')
+                ->with('success', 'Вы успешно авторизовались');
+        }
 
-        return redirect()->route('home');
     }
 }
