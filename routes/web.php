@@ -23,14 +23,16 @@ Route::get('/', function (Request $request) {
     return view('home');
 })->name('home');
 
+// Получение шаблона
 Route::get('/register', function () {
     return view('register');
 })->name('register');
 
+// Обработка формы
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::middleware('guest')->namespace('\App\Http\Controllers')->group(function() {
-   
+
     Route::get('/login', function () {
         return view('login');
     })->name('login');

@@ -19,10 +19,12 @@ class AddRoleToUsers extends Migration
             $table->foreignId('role_id')->constrained('users');
         });
 
+        // id 1
         Role::create([
             'name' => 'default'
         ]);
 
+        // id 2
         Role::create([
             'name' => 'admin'
         ]);
